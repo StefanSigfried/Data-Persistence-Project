@@ -21,19 +21,21 @@ public class GameDataManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void SetPlayerData(string currentPlayerName, string bestScoredPlayerName, int bestScore)
+    public void SetPlayerData(PlayerData inData)
     {
-        CurrentPlayerName = currentPlayerName;
-        BestScoredPlayerName = bestScoredPlayerName;
-        BestScore = bestScore;
+        CurrentPlayerName = inData.CurrentPlayerName;
+        BestScoredPlayerName = inData.BestScoredPlayerName;
+        BestScore = inData.BestScore;
     }
+                
 
     public void SaveBestScore()
     {
         PlayerData data = new PlayerData
         {
-            bestScoredPlayerName = BestScoredPlayerName,
-            bestScore = BestScore
+            BestScoredPlayerName = BestScoredPlayerName,  // Ensure PascalCase is used
+            BestScore = BestScore,
+            CurrentPlayerName = CurrentPlayerName
         };
         JSONReadWriteUtility.SaveData(data);
     }

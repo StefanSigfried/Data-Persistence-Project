@@ -19,14 +19,18 @@ public static class JSONReadWriteUtility
             return JsonUtility.FromJson<PlayerData>(json);
         }
 
-        return new PlayerData { PlayerName = "Player", BestScore = 0 };
+
+        // Return a default player data instance if no file exists
+        return new PlayerData { BestScoredPlayerName = "Player", BestScore = 0 };
     }
 }
+
 
 [System.Serializable]
 public class PlayerData
 {
-    public string PlayerName { get; set; }
-    public int BestScore { get; set; }
+    public string BestScoredPlayerName = "Player";  // The name of the best-scoring player
+    public int BestScore = 0;                       // The best score
+    public string CurrentPlayerName = "";           // The current player's name
 }
 
